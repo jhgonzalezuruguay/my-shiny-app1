@@ -1,13 +1,13 @@
 FROM rocker/shiny:latest
 
-# Instala paquetes adicionales que necesite tu app
-RUN R -e "install.packages(c('shiny','dplyr','ggplot2'))"
+# Instalar librerías necesarias
+RUN R -e "install.packages('plotly', repos='https://cloud.r-project.org')"
 
-# Copia tu app al contenedor
-COPY . /srv/shiny-server/
+# Copiar tu app al contenedor
+COPY app.R /srv/shiny-server/
 
-# Expone el puerto
-EXPOSE 8080
+# Exponer el puerto
+EXPOSE 3838
 
 # Comando de inicio
-CMD ["R", "-e", "shiny::runApp('/srv/shiny-server/app.R', host='0.0.0.0', port=8080)"]
+CMD ["/usr/bin/shiny-server"]
