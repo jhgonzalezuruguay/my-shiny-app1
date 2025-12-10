@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: mi-shiny-app
+    name: my-shiny-app2
     env: r
-    buildCommand: ""
+    buildCommand: Rscript requirements.R
     startCommand: R -e "shiny::runApp('app.R', host='0.0.0.0', port=8080)"
     plan: free
